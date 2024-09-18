@@ -6,6 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/home/hdr/tocore.jar"/>
+	<classpathentry exported="true" kind="lib" path="Core.jar"/>
+	<classpathentry exported="true" kind="lib" path="flatlaf-3.5.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
