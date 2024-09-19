@@ -1,10 +1,7 @@
 package ui;
 
-import core.Member;
 import core.TASkOcupado;
-import core.Observable;
-import core.Observer;
-import core.Task;
+import obs.Observer;
 
 public class TASkOcupadoController implements Observer {
 
@@ -12,7 +9,7 @@ public class TASkOcupadoController implements Observer {
 
     public TASkOcupadoController(TASkOcupado taskOcupado) {
         this.taskOcupado = taskOcupado;
-        this.taskOcupado.addObserverToAssigner(this);
+        //this.taskOcupado.addObserverToAssigner(this);
     }
 
     public void assignTask(String taskDescription, String memberName) {
