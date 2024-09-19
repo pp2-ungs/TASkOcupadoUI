@@ -118,6 +118,7 @@ tmp/
 
 # Package Files #
 *.jar
+!flatlaf-3.5.1.jar
 *.war
 *.nar
 *.ear
