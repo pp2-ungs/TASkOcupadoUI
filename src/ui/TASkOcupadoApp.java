@@ -8,10 +8,6 @@ public class TASkOcupadoApp {
         var taskOcupado = new TASkOcupado();
         var taskOcupadoController = new TASkOcupadoController(taskOcupado);
 
-        //Notificator notificator = new ConcreteNotificator();
-
-        //taskOcupado.getTaskAssigner().addObserver(notificator);
-
         // taskOcupadoView display
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
