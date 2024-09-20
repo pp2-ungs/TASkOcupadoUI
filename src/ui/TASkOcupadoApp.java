@@ -1,6 +1,5 @@
 package ui;
 
-import core.Notificator;
 import core.TASkOcupado;
 import ext.EmailNotificator;
 
@@ -10,10 +9,10 @@ public class TASkOcupadoApp {
         var taskOcupado = new TASkOcupado();
         var taskOcupadoController = new TASkOcupadoController(taskOcupado);
 
-        Notificator notificator = new EmailNotificator();
+        EmailNotificator notificator = new EmailNotificator();
 
-        taskOcupado.getTaskAssigner().addObserver(notificator);
-
+        taskOcupado.addObserverToAssigner(notificator);
+        
         // taskOcupadoView display
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

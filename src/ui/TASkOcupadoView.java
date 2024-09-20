@@ -3,10 +3,12 @@ package ui;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import core.Member;
 import core.Notificator;
 import core.TASkOcupado;
 import core.Observable;
 import core.Observer;
+import core.Task;
 
 public class TASkOcupadoView extends javax.swing.JFrame implements Observer, Notificator {
 
@@ -336,12 +338,12 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer, Not
 
 
     @Override
-    public void update(Object obj) {
-        notify(obj);
+    public void update(Task task, Member member, Object obj) {
+        notify(task, member, obj);
     }
 
     @Override
-    public void notify(Object msg) {
+    public void notify(Task task, Member member, Object msg) {
         notificationsTextArea.append((String) msg);
     }
 
