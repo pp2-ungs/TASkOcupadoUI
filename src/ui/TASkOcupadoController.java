@@ -21,10 +21,10 @@ public class TASkOcupadoController implements Observer {
     }
     
     public String[] obtainMembers() {
-    	return taskOcupado.getMembers();
+    	return taskOcupado.obtainMembers();
     }
     
     public String[] obtainTasks() {
-    	return taskOcupado.getTasks();
+    	return taskOcupado.obtainTasks();
     }
 }
