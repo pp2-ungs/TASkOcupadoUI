@@ -1,10 +1,7 @@
 package ui;
 
-import core.Member;
 import core.TASkOcupado;
-import core.Observable;
 import core.Observer;
-import core.Task;
 
 public class TASkOcupadoController implements Observer {
 
@@ -21,5 +18,13 @@ public class TASkOcupadoController implements Observer {
 
     @Override
     public void update(Object obj) {
+    }
+    
+    public String[] obtainMembers() {
+    	return taskOcupado.getMembers();
+    }
+    
+    public String[] obtainTasks() {
+    	return taskOcupado.getTasks();
     }
 }

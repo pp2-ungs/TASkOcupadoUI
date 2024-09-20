@@ -1,8 +1,6 @@
 package ui;
 
-import core.Notificator;
 import core.TASkOcupado;
-import ext.EmailNotificator;
 
 public class TASkOcupadoApp {
 
