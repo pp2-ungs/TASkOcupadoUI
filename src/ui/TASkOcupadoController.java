@@ -20,6 +20,7 @@ public class TASkOcupadoController implements Observer {
 
     @Override
     public void update(Task task, Member member, Object obj) {
+        // Para mí, no es necesario que el controller sea un observer
     }
     
     public String[] obtainMembers() {

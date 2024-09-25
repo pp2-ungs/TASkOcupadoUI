@@ -5,13 +5,13 @@ import core.TASkOcupado;
 public class TASkOcupadoApp {
 
     public static void main(String[] args) {
+        // init model
         var taskOcupado = new TASkOcupado();
-        var taskOcupadoController = new TASkOcupadoController(taskOcupado);
 
-        // taskOcupadoView display
+        // init view
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TASkOcupadoView(taskOcupado, taskOcupadoController).setVisible(true);
+                new TASkOcupadoView(taskOcupado).setVisible(true);
             }
         });
     }

@@ -20,9 +20,9 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer, Not
 
     private TASkOcupadoController taskOcupadoController;
 
-    public TASkOcupadoView(TASkOcupado taskOcupado, TASkOcupadoController taskOcupadoController) {
+    public TASkOcupadoView(TASkOcupado taskOcupado) {
         taskOcupado.addObserverToAssigner(this);
-        this.taskOcupadoController = taskOcupadoController;
+        this.taskOcupadoController = new TASkOcupadoController(taskOcupado);
         initComponents();
         setAppearance(DARK);
     }
