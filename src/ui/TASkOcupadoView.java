@@ -4,6 +4,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf; // Do not remove it
 import core.Member;
+import core.NotificationDTO;
 import core.Notificator;
 import core.TASkOcupado;
 import core.Observer;
@@ -274,13 +275,13 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer, Not
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update(Task task, Member member, Object obj) {
-        notify(task, member, obj);
+    public void update(NotificationDTO notificationDTO) {
+        notify(notificationDTO);
     }
 
     @Override
-    public void notify(Task task, Member member, Object msg) {
-        notificationsTextArea.append((String) msg);
+    public void notify(NotificationDTO notificationDTO) {
+        notificationsTextArea.append(notificationDTO.getMessage());
     }
 
 }

@@ -1,6 +1,7 @@
 package ui;
 
 import core.Member;
+import core.NotificationDTO;
 import core.TASkOcupado;
 import core.Observer;
 import core.Task;
@@ -19,7 +20,7 @@ public class TASkOcupadoController implements Observer {
     }
 
     @Override
-    public void update(Task task, Member member, Object obj) {
+    public void update(NotificationDTO notificationDTO) {
         // Para mí, no es necesario que el controller sea un observer
     }
     
