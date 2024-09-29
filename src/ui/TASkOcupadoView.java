@@ -21,8 +21,10 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer, Not
     private TASkOcupadoController taskOcupadoController;
 
     public TASkOcupadoView(TASkOcupado taskOcupado) {
-        taskOcupado.addObserverToAssigner(this);
-        this.taskOcupadoController = new TASkOcupadoController(taskOcupado);
+        taskOcupado.addObserverToAssigner(this); // esto no hace nada
+        taskOcupadoController = new TASkOcupadoController(taskOcupado);
+
+        // Swing
         initComponents();
         setAppearance(DARK);
     }
@@ -319,7 +321,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer, Not
         notify(task, member, obj);
     }
 
-    @Override
+ //   @Override
     public void notify(Task task, Member member, Object msg) {
         notificationsTextArea.append((String) msg);
     }
