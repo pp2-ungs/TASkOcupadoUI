@@ -247,10 +247,10 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer, Not
     }//GEN-LAST:event_uglyRadioButtonMenuItemActionPerformed
 
     private void asignTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignTaskButtonActionPerformed
-    	if (tasksComboBox.getSelectedIndex() != 0 && memberComboBox.getSelectedIndex() != 0) {
-    		taskOcupadoController.assignTask(tasksComboBox.getSelectedItem().toString(), memberComboBox.getSelectedItem().toString());
+        if (tasksComboBox.getSelectedIndex() != 0 && memberComboBox.getSelectedIndex() != 0) {
+            taskOcupadoController.assignTask(tasksComboBox.getSelectedItem().toString(), memberComboBox.getSelectedItem().toString());
             System.out.println(tasksComboBox.getSelectedItem().toString() + " " + memberComboBox.getSelectedItem().toString());
-    	}
+        }
     }//GEN-LAST:event_asignTaskButtonActionPerformed
 
     /**
@@ -321,7 +321,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer, Not
         notify(task, member, obj);
     }
 
- //   @Override
+    @Override
     public void notify(Task task, Member member, Object msg) {
         notificationsTextArea.append((String) msg);
     }
