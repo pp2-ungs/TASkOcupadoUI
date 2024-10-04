@@ -20,7 +20,7 @@ public class TASkOcupadoController implements Observer {
     // Para mí, no es necesario que el controller sea un observer
     @Override
     public void update(Object event) {
-        System.out.println("?controller update: \n" + event);
+        System.out.println("[debuggin] controller update: \n" + event);
     }
 
     public String[] obtainMembers() {
