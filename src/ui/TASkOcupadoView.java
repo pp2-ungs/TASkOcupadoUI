@@ -3,15 +3,12 @@ package ui;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf; // Do not remove it
-import core.Member;
-import core.NotificationDTO;
-import core.Notificator;
-import core.TASkOcupado;
 import core.Observer;
-import core.Task;
+import core.TaskAssignerAdapter;
+import java.util.Map;
 
 @SuppressWarnings("serial")
-public class TASkOcupadoView extends javax.swing.JFrame implements Observer, Notificator {
+public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
 
     private static final String LIGHT = "com.formdev.flatlaf.themes.FlatMacLightLaf";
     private static final String DARK = "com.formdev.flatlaf.themes.FlatMacDarkLaf";
@@ -21,9 +18,9 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer, Not
 
     private TASkOcupadoController taskOcupadoController;
 
-    public TASkOcupadoView(TASkOcupado taskOcupado) {
-        taskOcupado.addObserverToAssigner(this); // esto no hace nada
-        taskOcupadoController = new TASkOcupadoController(taskOcupado);
+    public TASkOcupadoView(TaskAssignerAdapter taskAssignerAdapter) {
+        taskAssignerAdapter.addObserver(this); // Esto está de más
+        taskOcupadoController = new TASkOcupadoController(taskAssignerAdapter);
 
         // Swing
         initComponents();
@@ -275,13 +272,17 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer, Not
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update(NotificationDTO notificationDTO) {
-        notify(notificationDTO);
-    }
+    public void update(Object event) {
 
-    @Override
-    public void notify(NotificationDTO notificationDTO) {
-        notificationsTextArea.append(notificationDTO.getMessage());
+        //\begin{FIXME}
+        var timestamp = (String) ((Map) event).get("Time");
+        var taskDescription = (String) ((Map) event).get("Task");
+        var memberName = (String) ((Map) event).get("Name");
+        //\end{FIXME}
+
+        var notification = "(" + timestamp + ")  Task: [" + taskDescription + "]  →  Member: [" + memberName + "]\n";
+
+        notificationsTextArea.append(notification);
     }
 
 }
