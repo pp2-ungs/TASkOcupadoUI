@@ -4,7 +4,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf; // Do not remove it
 import core.Observer;
-import core.TaskAssignerAdapter;
+import core.TASkOcupado;
 import java.util.Map;
 
 @SuppressWarnings("serial")
@@ -16,11 +16,11 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     private static final String CLASSIC = "javax.swing.plaf.metal.MetalLookAndFeel";
     private static final String UGLY = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
 
-    private TASkOcupadoController taskOcupadoController;
+    private TASkOcupado taskOcupado;
 
-    public TASkOcupadoView(TaskAssignerAdapter taskAssignerAdapter) {
-        taskAssignerAdapter.addObserver(this); // Esto está de más
-        taskOcupadoController = new TASkOcupadoController(taskAssignerAdapter);
+    public TASkOcupadoView(TASkOcupado taskOcupado) {
+        taskOcupado.addObserver(this); // Esto está de más
+        taskOcupadoController = new TASkOcupadoController(taskOcupado);
 
         // Swing
         initComponents();

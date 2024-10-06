@@ -1,19 +1,22 @@
 package ui;
 
+import core.Member;
 import core.Observer;
-import core.TaskAssignerAdapter;
+import core.TASkOcupado;
+import core.Task;
+import java.util.Set;
 
 public class TASkOcupadoController implements Observer {
 
-    private TaskAssignerAdapter taskAssignerAdapter;
+    private TASkOcupado taskOcupado;
 
-    public TASkOcupadoController(TaskAssignerAdapter taskAssignerAdapter) {
-        this.taskAssignerAdapter = taskAssignerAdapter;
-        this.taskAssignerAdapter.addObserver(this);
+    public TASkOcupadoController(TASkOcupado taskOcupado) {
+        this.taskOcupado = taskOcupado;
+        this.taskOcupado.addObserver(this);
     }
 
     public void assignTask(String taskDescription, String memberName) {
-        taskAssignerAdapter.assignTask(taskDescription, memberName);
+        //.assignTask(taskDescription, memberName);
     }
 
     // FIXME
@@ -23,11 +26,11 @@ public class TASkOcupadoController implements Observer {
         System.out.println("[debuggin] controller update: \n" + event);
     }
 
-    public String[] obtainMembers() {
-        return taskAssignerAdapter.obtainMembers();
+    public Set<Member> obtainMembers() {
+        return taskOcupado.getMembers();
     }
 
-    public String[] obtainTasks() {
-        return taskAssignerAdapter.obtainTasks();
+    public Set<Task> obtainTasks() {
+        return taskOcupado.getTasks();
     }
 }
