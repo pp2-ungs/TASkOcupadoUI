@@ -1,33 +1,28 @@
 package ui;
 
 import core.Observer;
-import core.TaskAssignerAdapter;
+import core.TASkOcupado;
 
 public class TASkOcupadoController implements Observer {
 
-    private TaskAssignerAdapter taskAssignerAdapter;
+    private TASkOcupado taskOcupado;
 
-    public TASkOcupadoController(TaskAssignerAdapter taskAssignerAdapter) {
-        this.taskAssignerAdapter = taskAssignerAdapter;
-        this.taskAssignerAdapter.addObserver(this);
+    public TASkOcupadoController(TASkOcupado taskOcupado) {
+        this.taskOcupado = taskOcupado;
+        this.taskOcupado.addObserver(this);
     }
 
     public void assignTask(String taskDescription, String memberName) {
-        taskAssignerAdapter.assignTask(taskDescription, memberName);
+        taskOcupado.assignTask(taskDescription, memberName);
     }
 
-    // FIXME
-    // Para mí, no es necesario que el controller sea un observer
     @Override
     public void update(Object event) {
         System.out.println("[debuggin] controller update: \n" + event);
     }
 
-    public String[] obtainMembers() {
-        return taskAssignerAdapter.obtainMembers();
-    }
-
-    public String[] obtainTasks() {
-        return taskAssignerAdapter.obtainTasks();
+    @Override
+    public String getName() {
+        return "Controller";
     }
 }
