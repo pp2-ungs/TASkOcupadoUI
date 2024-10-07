@@ -27,8 +27,6 @@ public class TASkOcupadoController implements Observer {
         this.taskOcupadoView = taskOcupadoView;
         
         loadData();
-        loadTasksComboBox();
-        loadMembersComboBox();
     }
     
     private void loadData() {
@@ -37,6 +35,9 @@ public class TASkOcupadoController implements Observer {
         
         taskOcupado.getTasks().forEach(task -> tasks.put(task.toString(), task));
         taskOcupado.getMembers().forEach(member -> members.put(member.toString(), member));
+        
+        loadTasksComboBox();
+        loadMembersComboBox();
     }
 
     public void assignTask(String task, String member) {
@@ -82,4 +83,6 @@ public class TASkOcupadoController implements Observer {
         
         taskOcupadoView.loadMembersComboBox(members);
     }
+    
+    //private void loadArray(Set<String> set, String[])
 }
