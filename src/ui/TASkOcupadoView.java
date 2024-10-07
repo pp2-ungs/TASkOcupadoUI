@@ -278,11 +278,11 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_assignTaskButtonActionPerformed
 
     private void taskComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskComboBoxActionPerformed
-        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 || notificationMethodTable.getRowCount() <= 0));
+        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0));
     }//GEN-LAST:event_taskComboBoxActionPerformed
 
     private void memberComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberComboBoxActionPerformed
-        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 || notificationMethodTable.getRowCount() <= 0));
+        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 ));
     }//GEN-LAST:event_memberComboBoxActionPerformed
 
     /**
@@ -368,23 +368,23 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     }
 
     private void setUpMembersComboBox() {
-        Set<Member> membersSet = null;
+        Set<String> membersSet = null;
         try {
-            membersSet = taskOcupado.getMembers();
+            membersSet = taskOcupadoController.obtainMembers();
         } catch (Exception e) {
             // no hay tasks
             membersSet = new HashSet<>();
         }
 
-        List<Member> membersList = new ArrayList<>(membersSet);
-        membersList.sort(Comparator.comparing(Member::getName));
+        List<String> membersList = new ArrayList<>(membersSet);
+        membersList.sort(Comparator.comparing(String::toString));
 
         String[] membersName = new String[membersList.size() + 1];
         membersName[0] = "Select member";
 
         int i = 1;
-        for (Member m : membersList) {
-            membersName[i++] = m.getName();
+        for (String s : membersList) {
+            membersName[i++] = s;
         }
 
         memberComboBox.setModel(new DefaultComboBoxModel(membersName));

@@ -31,7 +31,6 @@ public class TASkOcupadoController implements Observer {
         System.out.println("[debuggin] controller update: \n" + event);
     }
 
-
     public Set<String> obtainTasks() {
         return tasks.keySet();
     }
