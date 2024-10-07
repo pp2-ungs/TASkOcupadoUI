@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import observer.Observer;
@@ -31,13 +32,12 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     private TASkOcupado taskOcupado;                     // posa dice que acá va el modelo
 
     public TASkOcupadoView(TASkOcupado taskOcupado) {
-        this.taskOcupado = taskOcupado;
-        this.taskOcupado.addObserver(this);
-        this.taskOcupadoController = new TASkOcupadoController(taskOcupado, this);
-
-        // Swing
         initComponents();
         setAppearance(DARK);
+        
+        this.taskOcupado = taskOcupado;
+        this.taskOcupado.addObserver(this);
+        this.taskOcupadoController = new TASkOcupadoController(taskOcupado, this);   
     }
 
     public void setLookAndFeel(String lookAndFeel) {
@@ -367,11 +367,13 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     }
 
     protected void loadTasksComboBox(String[] tasks) {
+        taskComboBox = new JComboBox<String>();
         taskComboBox.setModel(new DefaultComboBoxModel(tasks));
         taskComboBox.setSelectedIndex(0);
     }
     
     protected void loadMembersComboBox(String[] members) {
+        memberComboBox = new JComboBox<String>();
         memberComboBox.setModel(new DefaultComboBoxModel(members));
         memberComboBox.setSelectedIndex(0);
     }
