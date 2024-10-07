@@ -4,6 +4,7 @@ import core.Member;
 import observer.Observer;
 import core.TASkOcupado;
 import core.Task;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,6 +18,9 @@ public class TASkOcupadoController implements Observer {
     public TASkOcupadoController(TASkOcupado taskOcupado) {
         this.taskOcupado = taskOcupado;
         this.taskOcupado.addObserver(this);
+        
+        tasks = new HashMap<>();
+        members = new HashMap<>();
         
         taskOcupado.getTasks().forEach(task -> tasks.put(task.toString(), task));
         taskOcupado.getMembers().forEach(member -> members.put(member.toString(), member));
