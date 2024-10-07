@@ -1,10 +1,7 @@
 package ui;
 
-import core.Member;
 import core.Observer;
 import core.TASkOcupado;
-import core.Task;
-import java.util.Set;
 
 public class TASkOcupadoController implements Observer {
 
@@ -16,21 +13,16 @@ public class TASkOcupadoController implements Observer {
     }
 
     public void assignTask(String taskDescription, String memberName) {
-        //.assignTask(taskDescription, memberName);
+        taskOcupado.assignTask(taskDescription, memberName);
     }
 
-    // FIXME
-    // Para mí, no es necesario que el controller sea un observer
     @Override
     public void update(Object event) {
         System.out.println("[debuggin] controller update: \n" + event);
     }
 
-    public Set<Member> obtainMembers() {
-        return taskOcupado.getMembers();
-    }
-
-    public Set<Task> obtainTasks() {
-        return taskOcupado.getTasks();
+    @Override
+    public String getName() {
+        return "Controller";
     }
 }
