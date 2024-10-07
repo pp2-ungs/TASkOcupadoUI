@@ -33,18 +33,10 @@ public class TASkOcupadoController implements Observer {
 
 
     public Set<String> obtainTasks() {
-        Set<String> tasks = taskOcupado.getTasks()
-                                   .stream()
-                                   .map(Task::toString)
-                                   .collect(Collectors.toSet());
-        return tasks;
+        return tasks.keySet();
     }
 
     public Set<String> obtainMembers() {
-        Set<String> tasks = taskOcupado.getMembers()
-                                   .stream()
-                                   .map(Member::toString)
-                                   .collect(Collectors.toSet());
-        return tasks;
+        return members.keySet();
     }
 }
