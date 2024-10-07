@@ -12,13 +12,21 @@ import java.util.stream.Collectors;
 public class TASkOcupadoController implements Observer {
 
     private TASkOcupado taskOcupado;
+    private TASkOcupadoView taskOcupadoView;
+    
     private Map<String, Task> tasks;
     private Map<String, Member> members;
 
-    public TASkOcupadoController(TASkOcupado taskOcupado) {
+    public TASkOcupadoController(TASkOcupado taskOcupado, TASkOcupadoView taskOcupadoView) {
         this.taskOcupado = taskOcupado;
         this.taskOcupado.addObserver(this);
         
+        this.taskOcupadoView = taskOcupadoView;
+        
+        loadData();
+    }
+    
+    private void loadData() {
         tasks = new HashMap<>();
         members = new HashMap<>();
         
@@ -32,6 +40,7 @@ public class TASkOcupadoController implements Observer {
 
     @Override
     public void update(Object event) {
+        loadData(); // por si cambian miembros y tasks en el modelo
         System.out.println("[debuggin] controller update: \n" + event);
     }
 
