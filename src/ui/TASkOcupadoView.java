@@ -39,6 +39,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
         initComponents();
         setAppearance(DARK);
         setUpMembersComboBox();
+        setUpTasksComboBox();
     }
 
     public void setLookAndFeel(String lookAndFeel) {
@@ -389,5 +390,29 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
 
         memberComboBox.setModel(new DefaultComboBoxModel(membersName));
         memberComboBox.setSelectedIndex(0);
+    }
+    
+    private void setUpTasksComboBox() {
+        Set<String> tasksSet = null;
+        try {
+            tasksSet = taskOcupadoController.obtainTasks();
+        } catch (Exception e) {
+            // no hay tasks
+            tasksSet = new HashSet<>();
+        }
+
+        List<String> tasksList = new ArrayList<>(tasksSet);
+        tasksList.sort(Comparator.comparing(String::toString));
+
+        String[] tasks = new String[tasksList.size() + 1];
+        tasks[0] = "Select task";
+
+        int i = 1;
+        for (String s : tasksList) {
+            tasks[i++] = s;
+        }
+
+        taskComboBox.setModel(new DefaultComboBoxModel(tasks));
+        taskComboBox.setSelectedIndex(0);
     }
 }
