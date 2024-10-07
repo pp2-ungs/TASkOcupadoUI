@@ -55,16 +55,9 @@ public class TASkOcupadoController implements Observer {
         
         List<String> tasksList = new ArrayList<>(tasksSet);
         tasksList.sort(Comparator.comparing(String::toString));
-
-        String[] tasks = new String[tasksList.size() + 1];
-        tasks[0] = "Select task";
-
-        int i = 1;
-        for (String s : tasksList) {
-            tasks[i++] = s;
-        }
-
-        taskOcupadoView.loadTasksComboBox(tasks);
+        tasksList.addFirst("Select task");
+        
+        taskOcupadoView.loadTasksComboBox(toArray(tasksList));
     }
 
     private void loadMembersComboBox() {
@@ -72,17 +65,19 @@ public class TASkOcupadoController implements Observer {
 
         List<String> membersList = new ArrayList<>(membersSet);
         membersList.sort(Comparator.comparing(String::toString));
+        membersList.addFirst("Select member");
 
-        String[] members = new String[membersList.size() + 1];
-        members[0] = "Select member";
-
-        int i = 1;
-        for (String s : membersList) {
-            members[i++] = s;
-        }
-        
-        taskOcupadoView.loadMembersComboBox(members);
+        taskOcupadoView.loadMembersComboBox(toArray(membersList));
     }
     
-    //private void loadArray(Set<String> set, String[])
+    private String[] toArray(List<String> list) {
+        String[] data = new String[list.size()];
+              
+        int i = 0;
+        for (String s : list) {
+            data[i++] = s;
+        }
+       
+        return data;
+    }
 }
