@@ -1,7 +1,8 @@
 package ui;
 
-import core.Observer;
+import observer.Observer;
 import core.TASkOcupado;
+
 
 public class TASkOcupadoController implements Observer {
 
@@ -21,8 +22,12 @@ public class TASkOcupadoController implements Observer {
         System.out.println("[debuggin] controller update: \n" + event);
     }
 
-    @Override
-    public String getName() {
-        return "Controller";
+
+    public String[] obtainMembers() {
+        return taskOcupado.obtainMembers();
+    }
+
+    public String[] obtainTasks() {
+        return taskOcupado.obtainTasks();
     }
 }
