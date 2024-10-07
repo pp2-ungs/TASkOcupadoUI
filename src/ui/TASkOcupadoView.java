@@ -18,7 +18,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 @SuppressWarnings("serial")
-public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
+public class TASkOcupadoView extends javax.swing.JFrame implements observer.Observer {
 
     private static final String LIGHT = "com.formdev.flatlaf.themes.FlatMacLightLaf";
     private static final String DARK = "com.formdev.flatlaf.themes.FlatMacDarkLaf";
@@ -54,7 +54,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
         try {
             UIManager.setLookAndFeel(lookAndFeel);
         } catch (Exception e) {
-            System.out.println(e);
+            System.err.println(e);
             setLookAndFeel(CLASSIC);
         }
         SwingUtilities.updateComponentTreeUI(this);
@@ -490,7 +490,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     }
 
     private void setUpNotificationMethodComboBox() {
-        Set<Observer> observersSet = null;
+        Set<observer.Observer> observersSet = null;
         try {
             observersSet = taskOcupado.getNotificationMethods();
         } catch (Exception e) {

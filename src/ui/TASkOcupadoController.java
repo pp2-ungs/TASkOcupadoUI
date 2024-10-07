@@ -1,6 +1,6 @@
 package ui;
 
-import core.Observer;
+import observer.Observer;
 import core.TASkOcupado;
 
 public class TASkOcupadoController implements Observer {
@@ -13,6 +13,7 @@ public class TASkOcupadoController implements Observer {
     }
 
     public void assignTask(String taskDescription, String memberName) {
+        // aca va Task y Member :D
         taskOcupado.assignTask(taskDescription, memberName);
     }
 
