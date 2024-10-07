@@ -1,7 +1,7 @@
 package ui;
 
 import core.Member;
-import observer.Observer;
+import core.Observer;
 import core.TASkOcupado;
 import core.Task;
 import java.util.Set;

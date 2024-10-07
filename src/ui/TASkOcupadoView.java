@@ -3,7 +3,7 @@ package ui;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf; // Do not remove it
-import observer.Observer;
+import core.Observer;
 import core.TASkOcupado;
 import java.util.Map;
 
@@ -17,7 +17,6 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     private static final String UGLY = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
 
     private TASkOcupado taskOcupado;
-    private TASkOcupadoController taskOcupadoController;
 
     public TASkOcupadoView(TASkOcupado taskOcupado) {
         taskOcupado.addObserver(this); // Esto está de más
