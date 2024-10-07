@@ -4,7 +4,10 @@ import core.Member;
 import observer.Observer;
 import core.TASkOcupado;
 import core.Task;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,6 +27,8 @@ public class TASkOcupadoController implements Observer {
         this.taskOcupadoView = taskOcupadoView;
         
         loadData();
+        loadTasksComboBox();
+        loadMembersComboBox();
     }
     
     private void loadData() {
@@ -43,12 +48,38 @@ public class TASkOcupadoController implements Observer {
         loadData(); // por si cambian miembros y tasks en el modelo
         System.out.println("[debuggin] controller update: \n" + event);
     }
+    
+    private void loadTasksComboBox() {
+        Set<String> tasksSet = tasks.keySet();
+        
+        List<String> tasksList = new ArrayList<>(tasksSet);
+        tasksList.sort(Comparator.comparing(String::toString));
 
-    public Set<String> obtainTasks() {
-        return tasks.keySet();
+        String[] tasks = new String[tasksList.size() + 1];
+        tasks[0] = "Select task";
+
+        int i = 1;
+        for (String s : tasksList) {
+            tasks[i++] = s;
+        }
+
+        taskOcupadoView.loadTasksComboBox(tasks);
     }
 
-    public Set<String> obtainMembers() {
-        return members.keySet();
+    private void loadMembersComboBox() {
+        Set<String> membersSet = members.keySet();
+
+        List<String> membersList = new ArrayList<>(membersSet);
+        membersList.sort(Comparator.comparing(String::toString));
+
+        String[] members = new String[membersList.size() + 1];
+        members[0] = "Select member";
+
+        int i = 1;
+        for (String s : membersList) {
+            members[i++] = s;
+        }
+        
+        taskOcupadoView.loadMembersComboBox(members);
     }
 }

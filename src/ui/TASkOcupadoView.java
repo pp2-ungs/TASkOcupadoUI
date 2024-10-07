@@ -33,13 +33,11 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     public TASkOcupadoView(TASkOcupado taskOcupado) {
         this.taskOcupado = taskOcupado;
         this.taskOcupado.addObserver(this);
-        this.taskOcupadoController = new TASkOcupadoController(taskOcupado);
+        this.taskOcupadoController = new TASkOcupadoController(taskOcupado, this);
 
         // Swing
         initComponents();
         setAppearance(DARK);
-        setUpMembersComboBox();
-        setUpTasksComboBox();
     }
 
     public void setLookAndFeel(String lookAndFeel) {
@@ -368,51 +366,13 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
         System.out.println("[debuggin] view update: \n" + event);
     }
 
-    private void setUpMembersComboBox() {
-        Set<String> membersSet = null;
-        try {
-            membersSet = taskOcupadoController.obtainMembers();
-        } catch (Exception e) {
-            // no hay tasks
-            membersSet = new HashSet<>();
-        }
-
-        List<String> membersList = new ArrayList<>(membersSet);
-        membersList.sort(Comparator.comparing(String::toString));
-
-        String[] membersName = new String[membersList.size() + 1];
-        membersName[0] = "Select member";
-
-        int i = 1;
-        for (String s : membersList) {
-            membersName[i++] = s;
-        }
-
-        memberComboBox.setModel(new DefaultComboBoxModel(membersName));
-        memberComboBox.setSelectedIndex(0);
-    }
-    
-    private void setUpTasksComboBox() {
-        Set<String> tasksSet = null;
-        try {
-            tasksSet = taskOcupadoController.obtainTasks();
-        } catch (Exception e) {
-            // no hay tasks
-            tasksSet = new HashSet<>();
-        }
-
-        List<String> tasksList = new ArrayList<>(tasksSet);
-        tasksList.sort(Comparator.comparing(String::toString));
-
-        String[] tasks = new String[tasksList.size() + 1];
-        tasks[0] = "Select task";
-
-        int i = 1;
-        for (String s : tasksList) {
-            tasks[i++] = s;
-        }
-
+    protected void loadTasksComboBox(String[] tasks) {
         taskComboBox.setModel(new DefaultComboBoxModel(tasks));
         taskComboBox.setSelectedIndex(0);
+    }
+    
+    protected void loadMembersComboBox(String[] members) {
+        memberComboBox.setModel(new DefaultComboBoxModel(members));
+        memberComboBox.setSelectedIndex(0);
     }
 }
