@@ -367,13 +367,13 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     }
 
     protected void loadTasksComboBox(String[] tasks) {
-        taskComboBox = new JComboBox<String>();
+        //taskComboBox = new JComboBox<String>();
         taskComboBox.setModel(new DefaultComboBoxModel(tasks));
         taskComboBox.setSelectedIndex(0);
     }
     
     protected void loadMembersComboBox(String[] members) {
-        memberComboBox = new JComboBox<String>();
+        //memberComboBox = new JComboBox<String>();
         memberComboBox.setModel(new DefaultComboBoxModel(members));
         memberComboBox.setSelectedIndex(0);
     }
