@@ -4,7 +4,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf; // Do not remove it
 import core.Member;
-import core.Observer;
+import observer.Observer;
 import core.TASkOcupado;
 import core.Task;
 import java.util.ArrayList;
@@ -30,16 +30,12 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
     private TASkOcupado taskOcupado;                     // posa dice que acá va el modelo
 
     public TASkOcupadoView(TASkOcupado taskOcupado) {
-        this.taskOcupado = taskOcupado;
-        this.taskOcupado.addObserver(this);
-        this.taskOcupadoController = new TASkOcupadoController(taskOcupado);
-
-        // Swing
         initComponents();
         setAppearance(DARK);
-        setUpNotificationMethodComboBox();
-        setUpTasksComboBox();
-        setUpMembersComboBox();
+        
+        this.taskOcupado = taskOcupado;
+        this.taskOcupado.addObserver(this);
+        this.taskOcupadoController = new TASkOcupadoController(taskOcupado, this);
     }
 
     public void setLookAndFeel(String lookAndFeel) {
@@ -488,77 +484,22 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
         });
         System.out.println("[debuggin] view update: \n" + event);
     }
-
-    private void setUpNotificationMethodComboBox() {
-        Set<observer.Observer> observersSet = null;
-        try {
-            observersSet = taskOcupado.getNotificationMethods();
-        } catch (Exception e) {
-            // no hay observers
-            observersSet = new HashSet<>();
-        }
-
-        var observersList = new ArrayList<>(observersSet);
-        observersList.sort(Comparator.comparing(Observer::getName));
-
-        String[] observerNames = new String[observersList.size() + 1];
-        observerNames[0] = "Notify by";
-
-        int i = 1;
-        for (Observer o : observersList) {
-            observerNames[i++] = o.getName();
-        }
-
-        notificationMethodComboBox.setModel(new DefaultComboBoxModel(observerNames));
-        notificationMethodComboBox.setSelectedIndex(0);
-    }
-
-    private void setUpTasksComboBox() {
-        Set<Task> tasksSet = null;
-        try {
-            tasksSet = taskOcupado.getTasks();
-        } catch (Exception e) {
-            // no hay tasks
-            tasksSet = new HashSet<>();
-        }
-
-        List<Task> tasksList = new ArrayList<>(tasksSet);
-        tasksList.sort(Comparator.comparing(Task::getDescription));
-
-        String[] tasksDescription = new String[tasksList.size() + 1];
-        tasksDescription[0] = "Select task";
-
-        int i = 1;
-        for (Task t : tasksList) {
-            tasksDescription[i++] = t.getDescription();
-        }
-
-        taskComboBox.setModel(new DefaultComboBoxModel(tasksDescription));
+    
+    protected void loadTasksComboBox(String[] tasks) {
+        //taskComboBox = new JComboBox<String>();
+        taskComboBox.setModel(new DefaultComboBoxModel(tasks));
         taskComboBox.setSelectedIndex(0);
     }
-
-    private void setUpMembersComboBox() {
-        Set<Member> membersSet = null;
-        try {
-            membersSet = taskOcupado.getMembers();
-        } catch (Exception e) {
-            // no hay tasks
-            membersSet = new HashSet<>();
-        }
-
-        List<Member> membersList = new ArrayList<>(membersSet);
-        membersList.sort(Comparator.comparing(Member::getName));
-
-        String[] membersName = new String[membersList.size() + 1];
-        membersName[0] = "Select member";
-
-        int i = 1;
-        for (Member m : membersList) {
-            membersName[i++] = m.getName();
-        }
-
-        memberComboBox.setModel(new DefaultComboBoxModel(membersName));
+    
+    protected void loadMembersComboBox(String[] members) {
+        //memberComboBox = new JComboBox<String>();
+        memberComboBox.setModel(new DefaultComboBoxModel(members));
         memberComboBox.setSelectedIndex(0);
+    }
+    
+    protected void loadNotificationMethodsComboBox(String[] notificationMethods) {
+        notificationMethodComboBox.setModel(new DefaultComboBoxModel(notificationMethods));
+        notificationMethodComboBox.setSelectedIndex(0);
     }
 
     private void setUpRemoveButton() {
