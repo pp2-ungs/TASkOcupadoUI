@@ -34,10 +34,11 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     public TASkOcupadoView(TASkOcupado taskOcupado) {
         initComponents();
         setAppearance(DARK);
+        setLocationRelativeTo(null);
         
         this.taskOcupado = taskOcupado;
         this.taskOcupado.addObserver(this);
-        this.taskOcupadoController = new TASkOcupadoController(taskOcupado, this);   
+        this.taskOcupadoController = new TASkOcupadoController(taskOcupado, this);
     }
 
     public void setLookAndFeel(String lookAndFeel) {
