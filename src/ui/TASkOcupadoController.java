@@ -57,7 +57,8 @@ public class TASkOcupadoController implements Observer {
         tasksList.sort(Comparator.comparing(String::toString));
         tasksList.addFirst("Select task");
         
-        taskOcupadoView.loadTasksComboBox(toArray(tasksList));
+        String[] tasksArray = tasksList.toArray(new String[0]);
+        taskOcupadoView.loadTasksComboBox(tasksArray);
     }
 
     private void loadMembersComboBox() {
@@ -67,17 +68,8 @@ public class TASkOcupadoController implements Observer {
         membersList.sort(Comparator.comparing(String::toString));
         membersList.addFirst("Select member");
 
-        taskOcupadoView.loadMembersComboBox(toArray(membersList));
+        String[] membersArray = membersList.toArray(new String[0]);
+        taskOcupadoView.loadMembersComboBox(membersArray); 
     }
     
-    private String[] toArray(List<String> list) {
-        String[] data = new String[list.size()];
-              
-        int i = 0;
-        for (String s : list) {
-            data[i++] = s;
-        }
-       
-        return data;
-    }
 }
