@@ -32,7 +32,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
     public TASkOcupadoView(TASkOcupado taskOcupado) {
         initComponents();
         setAppearance(DARK);
-        
+
         this.taskOcupado = taskOcupado;
         this.taskOcupado.addObserver(this);
         this.taskOcupadoController = new TASkOcupadoController(taskOcupado, this);
@@ -98,7 +98,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
             }
         });
 
-        notificationMethodComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Notify by" }));
+        notificationMethodComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Notify by"}));
         notificationMethodComboBox.setToolTipText("");
         notificationMethodComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +106,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
             }
         });
 
-        memberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select member" }));
+        memberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Select member"}));
         memberComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 memberComboBoxActionPerformed(evt);
@@ -114,26 +114,24 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
         });
 
         notificationsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Time", "Task", "Member"
-            }
+                new Object[][]{},
+                new String[]{
+                    "Time", "Task", "Member"
+                }
         ) {
-            Class[] types = new Class [] {
+            Class[] types = new Class[]{
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean[]{
                 false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         notificationsTable.setColumnSelectionAllowed(true);
@@ -145,7 +143,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
             notificationsTable.getColumnModel().getColumn(0).setPreferredWidth(4);
         }
 
-        taskComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select task" }));
+        taskComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Select task"}));
         taskComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 taskComboBoxActionPerformed(evt);
@@ -153,26 +151,24 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
         });
 
         notificationMethodTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Seleted notifcation methods"
-            }
+                new Object[][]{},
+                new String[]{
+                    "Selected notifcation methods"
+                }
         ) {
-            Class[] types = new Class [] {
+            Class[] types = new Class[]{
                 java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean[]{
                 false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         notificationMethodTable.setColumnSelectionAllowed(true);
@@ -181,6 +177,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
             public void focusGained(java.awt.event.FocusEvent evt) {
                 notificationMethodTableFocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 notificationMethodTableFocusLost(evt);
             }
@@ -279,48 +276,48 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(notificationMethodComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(addNotificationMethodButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(notificationMethodScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(removeNotificationMethodButton))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(taskComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(assignTaskButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(notificationsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(memberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(notificationMethodComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(addNotificationMethodButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(notificationMethodScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(removeNotificationMethodButton))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(taskComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(assignTaskButton))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(notificationsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(memberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(notificationMethodComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(taskComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addNotificationMethodButton)
-                    .addComponent(assignTaskButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(removeNotificationMethodButton)
-                    .addComponent(memberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(notificationMethodScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
-                    .addComponent(notificationsScrollPane))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(notificationMethodComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(taskComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(addNotificationMethodButton)
+                                        .addComponent(assignTaskButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(removeNotificationMethodButton)
+                                        .addComponent(memberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(notificationMethodScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                                        .addComponent(notificationsScrollPane))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -361,6 +358,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
         });
         notificationMethodTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 || notificationMethodTable.getRowCount() <= 0));
+        taskOcupadoController.activeNotificator(notificationMethodComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_addNotificationMethodButtonActionPerformed
 
     private void notificationMethodComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationMethodComboBoxActionPerformed
@@ -377,9 +375,14 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
         if (notificationMethodTable.getRowCount() == 0 || notificationMethodTable.getSelectedRow() == -1) {
             return;
         }
+        int selectedRow = notificationMethodTable.getSelectedRow();
+        String selectedValue = (String) notificationMethodTable.getValueAt(selectedRow, 0);
+
         DefaultTableModel m = (DefaultTableModel) notificationMethodTable.getModel();
-        m.removeRow(notificationMethodTable.getSelectedRow());
+        m.removeRow(selectedRow);
         notificationMethodTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        taskOcupadoController.deactiveNotificator(selectedValue);
     }//GEN-LAST:event_removeNotificationMethodButtonActionPerformed
 
     private void notificationMethodTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_notificationMethodTableFocusGained
@@ -484,22 +487,46 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
         });
         System.out.println("[debuggin] view update: \n" + event);
     }
-    
+
     protected void loadTasksComboBox(String[] tasks) {
         //taskComboBox = new JComboBox<String>();
         taskComboBox.setModel(new DefaultComboBoxModel(tasks));
         taskComboBox.setSelectedIndex(0);
     }
-    
+
     protected void loadMembersComboBox(String[] members) {
         //memberComboBox = new JComboBox<String>();
         memberComboBox.setModel(new DefaultComboBoxModel(members));
         memberComboBox.setSelectedIndex(0);
     }
-    
+
     protected void loadNotificationMethodsComboBox(String[] notificationMethods) {
         notificationMethodComboBox.setModel(new DefaultComboBoxModel(notificationMethods));
         notificationMethodComboBox.setSelectedIndex(0);
+    }
+
+    protected void loadNotificationMethodsTable(String[][] notificationMethods) {
+        notificationMethodTable.setModel(new javax.swing.table.DefaultTableModel(
+                notificationMethods,
+                new String[]{
+                    "Selected notifcation methods"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
     }
 
     private void setUpRemoveButton() {
