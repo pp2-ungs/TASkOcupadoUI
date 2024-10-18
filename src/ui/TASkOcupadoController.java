@@ -41,7 +41,8 @@ public class TASkOcupadoController implements Observer {
         loadTasksComboBox();
         loadMembersComboBox();
         loadNotificationMethodsComboBox();
-        loadNotificationMethodsTable();
+        //loadNotificationMethodsTable();
+
     }
 
     public void assignTask(String task, String member) {
