@@ -3,16 +3,8 @@ package ui;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf; // Do not remove it
-import core.Member;
-import observer.Observer;
 import core.TASkOcupado;
-import core.Task;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +24,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
     public TASkOcupadoView(TASkOcupado taskOcupado) {
         initComponents();
         setAppearance(DARK);
+        setLocationRelativeTo(null);
 
         this.taskOcupado = taskOcupado;
         this.taskOcupado.addObserver(this);
@@ -74,7 +67,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
         notificationsTable = new javax.swing.JTable();
         taskComboBox = new javax.swing.JComboBox<>();
         notificationMethodScrollPane = new javax.swing.JScrollPane();
-        notificationMethodTable = new javax.swing.JTable();
+        notifiersTable = new javax.swing.JTable();
         addNotificationMethodButton = new javax.swing.JButton();
         removeNotificationMethodButton = new javax.swing.JButton();
         appMenuBar = new javax.swing.JMenuBar();
@@ -150,7 +143,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
             }
         });
 
-        notificationMethodTable.setModel(new javax.swing.table.DefaultTableModel(
+        notifiersTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
                     "Selected notifcation methods"
@@ -171,9 +164,9 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
                 return canEdit[columnIndex];
             }
         });
-        notificationMethodTable.setColumnSelectionAllowed(true);
-        notificationMethodTable.getTableHeader().setReorderingAllowed(false);
-        notificationMethodTable.addFocusListener(new java.awt.event.FocusAdapter() {
+        notifiersTable.setColumnSelectionAllowed(true);
+        notifiersTable.getTableHeader().setReorderingAllowed(false);
+        notifiersTable.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 notificationMethodTableFocusGained(evt);
             }
@@ -182,10 +175,10 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
                 notificationMethodTableFocusLost(evt);
             }
         });
-        notificationMethodScrollPane.setViewportView(notificationMethodTable);
-        notificationMethodTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (notificationMethodTable.getColumnModel().getColumnCount() > 0) {
-            notificationMethodTable.getColumnModel().getColumn(0).setResizable(false);
+        notificationMethodScrollPane.setViewportView(notifiersTable);
+        notifiersTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (notifiersTable.getColumnModel().getColumnCount() > 0) {
+            notifiersTable.getColumnModel().getColumn(0).setResizable(false);
         }
 
         addNotificationMethodButton.setText("Add");
@@ -352,13 +345,13 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
     }//GEN-LAST:event_assignTaskButtonActionPerformed
 
     private void addNotificationMethodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNotificationMethodButtonActionPerformed
-        DefaultTableModel m = (DefaultTableModel) notificationMethodTable.getModel();
+        DefaultTableModel m = (DefaultTableModel) notifiersTable.getModel();
         m.addRow(new Object[]{
             notificationMethodComboBox.getSelectedItem()
         });
-        notificationMethodTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 || notificationMethodTable.getRowCount() <= 0));
-        taskOcupadoController.activeNotificator(notificationMethodComboBox.getSelectedItem().toString());
+        notifiersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 || notifiersTable.getRowCount() <= 0));
+        taskOcupadoController.activeNotifier(notificationMethodComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_addNotificationMethodButtonActionPerformed
 
     private void notificationMethodComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationMethodComboBoxActionPerformed
@@ -372,17 +365,17 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
     }//GEN-LAST:event_notificationMethodComboBoxActionPerformed
 
     private void removeNotificationMethodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeNotificationMethodButtonActionPerformed
-        if (notificationMethodTable.getRowCount() == 0 || notificationMethodTable.getSelectedRow() == -1) {
+        if (notifiersTable.getRowCount() == 0 || notifiersTable.getSelectedRow() == -1) {
             return;
         }
-        int selectedRow = notificationMethodTable.getSelectedRow();
-        String selectedValue = (String) notificationMethodTable.getValueAt(selectedRow, 0);
+        int selectedRow = notifiersTable.getSelectedRow();
+        String selectedValue = (String) notifiersTable.getValueAt(selectedRow, 0);
 
-        DefaultTableModel m = (DefaultTableModel) notificationMethodTable.getModel();
+        DefaultTableModel m = (DefaultTableModel) notifiersTable.getModel();
         m.removeRow(selectedRow);
-        notificationMethodTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        notifiersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        taskOcupadoController.deactiveNotificator(selectedValue);
+        taskOcupadoController.deactiveNotifier(selectedValue);
     }//GEN-LAST:event_removeNotificationMethodButtonActionPerformed
 
     private void notificationMethodTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_notificationMethodTableFocusGained
@@ -394,11 +387,11 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
     }//GEN-LAST:event_notificationMethodTableFocusLost
 
     private void taskComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskComboBoxActionPerformed
-        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 || notificationMethodTable.getRowCount() <= 0));
+        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 || notifiersTable.getRowCount() <= 0));
     }//GEN-LAST:event_taskComboBoxActionPerformed
 
     private void memberComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberComboBoxActionPerformed
-        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 || notificationMethodTable.getRowCount() <= 0));
+        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 || notifiersTable.getRowCount() <= 0));
     }//GEN-LAST:event_memberComboBoxActionPerformed
 
     /**
@@ -458,7 +451,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
     private javax.swing.JComboBox<String> memberComboBox;
     private javax.swing.JComboBox<String> notificationMethodComboBox;
     private javax.swing.JScrollPane notificationMethodScrollPane;
-    private javax.swing.JTable notificationMethodTable;
+    private javax.swing.JTable notifiersTable;
     private javax.swing.JScrollPane notificationsScrollPane;
     private javax.swing.JTable notificationsTable;
     private javax.swing.JMenuItem quitMenuItem;
@@ -500,16 +493,16 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
         memberComboBox.setSelectedIndex(0);
     }
 
-    protected void loadNotificationMethodsComboBox(String[] notificationMethods) {
+    protected void loadNotifiersComboBox(String[] notificationMethods) {
         notificationMethodComboBox.setModel(new DefaultComboBoxModel(notificationMethods));
         notificationMethodComboBox.setSelectedIndex(0);
     }
 
-    protected void loadNotificationMethodsTable(String[][] notificationMethods) {
-        notificationMethodTable.setModel(new javax.swing.table.DefaultTableModel(
+    protected void loadNotifiersTable(String[][] notificationMethods) {
+        notifiersTable.setModel(new javax.swing.table.DefaultTableModel(
                 notificationMethods,
                 new String[]{
-                    "Selected notifcation methods"
+                    "Selected notification methods"
                 }
         ) {
             Class[] types = new Class[]{
@@ -530,7 +523,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
     }
 
     private void setUpRemoveButton() {
-        removeNotificationMethodButton.setEnabled(!(notificationMethodTable.getRowCount() == 0 || notificationMethodTable.getSelectedRow() == -1));
+        removeNotificationMethodButton.setEnabled(!(notifiersTable.getRowCount() == 0 || notifiersTable.getSelectedRow() == -1));
     }
 
 }

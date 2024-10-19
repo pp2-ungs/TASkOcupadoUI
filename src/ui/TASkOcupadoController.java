@@ -18,7 +18,7 @@ public class TASkOcupadoController implements Observer {
 
     private Map<String, Task> tasks;
     private Map<String, Member> members;
-    private Map<String, Observer> notificators;
+    private Map<String, Observer> notifiers;
 
     public TASkOcupadoController(TASkOcupado taskOcupado, TASkOcupadoView taskOcupadoView) {
         this.taskOcupado = taskOcupado;
@@ -32,16 +32,15 @@ public class TASkOcupadoController implements Observer {
     private void loadData() {
         tasks = new HashMap<>();
         members = new HashMap<>();
-        notificators = new HashMap<>();
+        notifiers = new HashMap<>();
 
         taskOcupado.getTasks().forEach(task -> tasks.put(task.toString(), task));
         taskOcupado.getMembers().forEach(member -> members.put(member.toString(), member));
-        taskOcupado.getNotificators().forEach(notificator -> notificators.put(notificator.getClass().getSimpleName(), notificator));
+        taskOcupado.getNotifiers().forEach(notifier -> notifiers.put(notifier.getClass().getSimpleName(), notifier));
 
         loadTasksComboBox();
         loadMembersComboBox();
-        loadNotificationMethodsComboBox();
-        loadNotificationMethodsTable();
+        loadNotifiersComboBox();
     }
 
     public void assignTask(String task, String member) {
@@ -76,34 +75,23 @@ public class TASkOcupadoController implements Observer {
         taskOcupadoView.loadMembersComboBox(membersArray);
     }
 
-    private void loadNotificationMethodsComboBox() {
-        Set<String> notificatorsSet = notificators.keySet();
+    private void loadNotifiersComboBox() {
+        Set<String> notifiersSet = notifiers.keySet();
 
-        List<String> notificatorsList = new ArrayList<>(notificatorsSet);
-        notificatorsList.sort(Comparator.comparing(String::toString));
-        notificatorsList.addFirst("Notify by");
+        List<String> notifiersList = new ArrayList<>(notifiersSet);
+        notifiersList.sort(Comparator.comparing(String::toString));
+        notifiersList.addFirst("Notify by");
 
-        String[] notificatorsArray = notificatorsList.toArray(new String[0]);
-        taskOcupadoView.loadNotificationMethodsComboBox(notificatorsArray);
+        String[] notificatorsArray = notifiersList.toArray(new String[0]);
+        taskOcupadoView.loadNotifiersComboBox(notificatorsArray);
     }
 
-    private void loadNotificationMethodsTable() {
-        Set<String> notificatorsSet = notificators.keySet();
-        // Convertir a un array bidimensional para la tabla
-        String[][] notificatorsArray = notificatorsSet
-                .stream()
-                .map(notificator -> new String[]{notificator})
-                .toArray(String[][]::new);
-
-        taskOcupadoView.loadNotificationMethodsTable(notificatorsArray);
+    public void activeNotifier(String notifier) {
+        taskOcupado.activeTaskAssignerObserver(notifiers.get(notifier));
     }
 
-    public void activeNotificator(String notificator) {
-        taskOcupado.activeTaskAssignerObserver(notificators.get(notificator));
-    }
-
-    public void deactiveNotificator(String notificator) {
-        taskOcupado.deactiveObserverToTaskAssigner(notificators.get(notificator));
+    public void deactiveNotifier(String notifier) {
+        taskOcupado.deactiveObserverToTaskAssigner(notifiers.get(notifier));
     }
 
 }
