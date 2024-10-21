@@ -1,12 +1,12 @@
 package ui;
 
-import core.TASkOcupado;
+import core.CoreFactory;
 
 public class TASkOcupadoApp {
 
     public static void main(String[] args) {
         // init model
-        var taskOcupado = new TASkOcupado("");
+        var taskOcupado = new CoreFactory("").create();
 
         // init view
         java.awt.EventQueue.invokeLater(new Runnable() {
