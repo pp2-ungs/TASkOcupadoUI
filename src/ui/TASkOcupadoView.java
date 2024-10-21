@@ -349,12 +349,9 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
 
     @Override
     public void update(Object event) {
-
-        //\begin{FIXME}
         var timestamp = (String) ((Map) event).get("Time");
         var taskDescription = (String) ((Map) event).get("Task");
         var memberName = (String) ((Map) event).get("Name");
-        //\end{FIXME}
 
         var notification = "(" + timestamp + ")  Task: [" + taskDescription + "]  →  Member: [" + memberName + "]\n";
 
@@ -364,7 +361,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
             taskDescription,
             memberName
         });
-        System.out.println("[debuggin] view update: \n" + event);
+        System.out.println("[debugging] view update: \n" + event);
     }
 
     protected void loadTasksComboBox(String[] tasks) {

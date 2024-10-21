@@ -47,7 +47,7 @@ public class TASkOcupadoController implements Observer {
     @Override
     public void update(Object event) {
         loadData(); // por si cambian miembros y tasks en el modelo
-        System.out.println("[debuggin] controller update: \n" + event);
+        System.out.println("[debugging] controller update: \n" + event);
     }
     
     private void loadTasksComboBox() {
