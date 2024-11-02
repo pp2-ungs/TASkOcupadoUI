@@ -1,12 +1,13 @@
 package ui;
 
-import core.TASkOcupado;
+import core.CoreFactory;
 
 public class TASkOcupadoApp {
 
     public static void main(String[] args) {
-        // init model
-        var taskOcupado = new TASkOcupado("");
+        // init domain model
+        var coreFactory = new CoreFactory("");
+        var taskOcupado = coreFactory.create();
 
         // init view
         java.awt.EventQueue.invokeLater(new Runnable() {

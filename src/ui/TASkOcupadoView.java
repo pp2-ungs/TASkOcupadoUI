@@ -3,7 +3,7 @@ package ui;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf; // Do not remove it
-import core.Member;
+import core.Person;
 import observer.Observer;
 import core.TASkOcupado;
 import core.Task;

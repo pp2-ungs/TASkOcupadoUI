@@ -1,6 +1,6 @@
 package ui;
 
-import core.Member;
+import core.Person;
 import observer.Observer;
 import core.TASkOcupado;
 import core.Task;
@@ -17,7 +17,7 @@ public class TASkOcupadoController implements Observer {
     private TASkOcupadoView taskOcupadoView;
 
     private Map<String, Task> tasks;
-    private Map<String, Member> members;
+    private Map<String, Person> members;
     private Map<String, Observer> notificators;
 
     public TASkOcupadoController(TASkOcupado taskOcupado, TASkOcupadoView taskOcupadoView) {
@@ -35,7 +35,7 @@ public class TASkOcupadoController implements Observer {
         notificators = new HashMap<>();
 
         taskOcupado.getTasks().forEach(task -> tasks.put(task.toString(), task));
-        taskOcupado.getMembers().forEach(member -> members.put(member.toString(), member));
+        taskOcupado.getPeople().forEach(member -> members.put(member.toString(), member));
         taskOcupado.getNotificators().forEach(notificator -> notificators.put(notificator.getClass().getSimpleName(), notificator));
 
         loadTasksComboBox();
