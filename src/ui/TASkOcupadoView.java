@@ -3,19 +3,9 @@ package ui;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf; // Do not remove it
-import core.Member;
 import core.TASkOcupado;
-import core.TASkOcupado;
-import core.Task;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import observer.Observer;
 

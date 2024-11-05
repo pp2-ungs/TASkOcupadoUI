@@ -1,6 +1,6 @@
 package ui;
 
-import core.Member;
+import core.Person;
 import observer.Observer;
 import core.TASkOcupado;
 import core.Task;
@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class TASkOcupadoController implements Observer {
 
@@ -18,7 +17,7 @@ public class TASkOcupadoController implements Observer {
     private TASkOcupadoView taskOcupadoView;
     
     private Map<String, Task> tasks;
-    private Map<String, Member> members;
+    private Map<String, Person> people;
 
     public TASkOcupadoController(TASkOcupado taskOcupado, TASkOcupadoView taskOcupadoView) {
         this.taskOcupado = taskOcupado;
@@ -31,17 +30,17 @@ public class TASkOcupadoController implements Observer {
     
     private void loadData() {
         tasks = new HashMap<>();
-        members = new HashMap<>();
+        people = new HashMap<>();
         
         taskOcupado.getTasks().forEach(task -> tasks.put(task.toString(), task));
-        taskOcupado.getMembers().forEach(member -> members.put(member.toString(), member));
+        taskOcupado.getPeople().forEach(person -> people.put(person.toString(), person));
         
         loadTasksComboBox();
         loadMembersComboBox();
     }
 
-    public void assignTask(String task, String member) {
-        taskOcupado.assignTask(tasks.get(task), members.get(member));
+    public void assignTask(String task, String person) {
+        taskOcupado.assignTask(tasks.get(task), people.get(person));
     }
 
     @Override
@@ -51,25 +50,25 @@ public class TASkOcupadoController implements Observer {
     }
     
     private void loadTasksComboBox() {
-        Set<String> tasksSet = tasks.keySet();
+        var tasksSet = tasks.keySet();
         
-        List<String> tasksList = new ArrayList<>(tasksSet);
+        var tasksList = new ArrayList<String>(tasksSet);
         tasksList.sort(Comparator.comparing(String::toString));
         tasksList.addFirst("Select task");
         
-        String[] tasksArray = tasksList.toArray(new String[0]);
+        var tasksArray = tasksList.toArray(new String[0]);
         taskOcupadoView.loadTasksComboBox(tasksArray);
     }
 
     private void loadMembersComboBox() {
-        Set<String> membersSet = members.keySet();
+        var peopleSet = people.keySet();
 
-        List<String> membersList = new ArrayList<>(membersSet);
-        membersList.sort(Comparator.comparing(String::toString));
-        membersList.addFirst("Select member");
+        var peopleList = new ArrayList<String>(peopleSet);
+        peopleList.sort(Comparator.comparing(String::toString));
+        peopleList.addFirst("Select person");
 
-        String[] membersArray = membersList.toArray(new String[0]);
-        taskOcupadoView.loadMembersComboBox(membersArray); 
+        var peopleArray = peopleList.toArray(new String[0]);
+        taskOcupadoView.loadMembersComboBox(peopleArray); 
     }
     
 }
