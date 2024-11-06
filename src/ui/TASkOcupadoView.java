@@ -23,6 +23,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
 
     public TASkOcupadoView(TASkOcupado taskOcupado) {
         initComponents();
+        setVisible(true);
         setAppearance(DARK);
         setLocationRelativeTo(null);
 
