@@ -1,6 +1,6 @@
 package ui;
 
-import core.CoreFactory;
+import core.TASkOcupadoFactory;
 
 public class TASkOcupadoApp {
     
@@ -9,14 +9,10 @@ public class TASkOcupadoApp {
      */
     public static void main(String[] args) {
         // init model
-        var taskOcupado = new CoreFactory(args.length > 0 ? args[0]: "").create();
+        var taskOcupado = new TASkOcupadoFactory(args.length > 0 ? args[0]: "").create();
 
         // init view
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TASkOcupadoView(taskOcupado).setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new TASkOcupadoView(taskOcupado));
     }
 
 }
