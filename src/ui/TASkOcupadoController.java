@@ -1,6 +1,6 @@
 package ui;
 
-import core.Member;
+import core.Person;
 import observer.Observer;
 import core.TASkOcupado;
 import core.Task;
@@ -17,8 +17,8 @@ public class TASkOcupadoController implements Observer {
     private TASkOcupadoView taskOcupadoView;
 
     private Map<String, Task> tasks;
-    private Map<String, Member> members;
-    private Map<String, Observer> notifiers;
+    private Map<String, Person> people;
+    private Set<String> notifiers;
 
     public TASkOcupadoController(TASkOcupado taskOcupado, TASkOcupadoView taskOcupadoView) {
         this.taskOcupado = taskOcupado;
@@ -31,12 +31,11 @@ public class TASkOcupadoController implements Observer {
 
     private void loadData() {
         tasks = new HashMap<>();
-        members = new HashMap<>();
-        notifiers = new HashMap<>();
-
+        people = new HashMap<>();
+        notifiers = taskOcupado.getNotifiers();
+        
         taskOcupado.getTasks().forEach(task -> tasks.put(task.toString(), task));
-        taskOcupado.getMembers().forEach(member -> members.put(member.toString(), member));
-        taskOcupado.getNotifiers().forEach(notifier -> notifiers.put(notifier.getClass().getSimpleName(), notifier));
+        taskOcupado.getPeople().forEach(member -> people.put(member.toString(), member));
 
         loadTasksComboBox();
         loadMembersComboBox();
@@ -44,7 +43,7 @@ public class TASkOcupadoController implements Observer {
     }
 
     public void assignTask(String task, String member) {
-        taskOcupado.assignTask(tasks.get(task), members.get(member));
+        taskOcupado.assignTask(tasks.get(task), people.get(member));
     }
 
     @Override
@@ -65,7 +64,7 @@ public class TASkOcupadoController implements Observer {
     }
 
     private void loadMembersComboBox() {
-        Set<String> membersSet = members.keySet();
+        Set<String> membersSet = people.keySet();
 
         List<String> membersList = new ArrayList<>(membersSet);
         membersList.sort(Comparator.comparing(String::toString));
@@ -76,9 +75,7 @@ public class TASkOcupadoController implements Observer {
     }
 
     private void loadNotifiersComboBox() {
-        Set<String> notifiersSet = notifiers.keySet();
-
-        List<String> notifiersList = new ArrayList<>(notifiersSet);
+        List<String> notifiersList = new ArrayList<>(notifiers);
         notifiersList.sort(Comparator.comparing(String::toString));
         notifiersList.addFirst("Notify by");
 
@@ -87,11 +84,11 @@ public class TASkOcupadoController implements Observer {
     }
 
     public void activeNotifier(String notifier) {
-        taskOcupado.activeTaskAssignerObserver(notifiers.get(notifier));
+        taskOcupado.activateNotifier(notifier);
     }
 
     public void deactiveNotifier(String notifier) {
-        taskOcupado.deactiveObserverToTaskAssigner(notifiers.get(notifier));
+        taskOcupado.deactivateNotifier(notifier);
     }
 
 }
