@@ -352,7 +352,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
         });
         notifiersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || personComboBox.getSelectedIndex() == 0 || notifiersTable.getRowCount() <= 0));
-        taskOcupadoController.activeNotifier(notificationMethodComboBox.getSelectedItem().toString());
+        taskOcupadoController.activateNotifier(notificationMethodComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_addNotificationMethodButtonActionPerformed
 
     private void notificationMethodComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationMethodComboBoxActionPerformed
@@ -376,7 +376,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
         m.removeRow(selectedRow);
         notifiersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        taskOcupadoController.deactiveNotifier(selectedValue);
+        taskOcupadoController.deactivateNotifier(selectedValue);
     }//GEN-LAST:event_removeNotificationMethodButtonActionPerformed
 
     private void notificationMethodTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_notificationMethodTableFocusGained

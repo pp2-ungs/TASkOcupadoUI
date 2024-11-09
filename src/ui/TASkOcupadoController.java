@@ -83,11 +83,11 @@ public class TASkOcupadoController implements Observer {
         taskOcupadoView.loadNotifiersComboBox(notificatorsArray);
     }
 
-    public void activeNotifier(String notifier) {
+    public void activateNotifier(String notifier) {
         taskOcupado.activateNotifier(notifier);
     }
 
-    public void deactiveNotifier(String notifier) {
+    public void deactivateNotifier(String notifier) {
         taskOcupado.deactivateNotifier(notifier);
     }
 
