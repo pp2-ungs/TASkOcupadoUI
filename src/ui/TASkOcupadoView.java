@@ -23,9 +23,9 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
 
     public TASkOcupadoView(TASkOcupado taskOcupado) {
         initComponents();
-        setVisible(true);
         setAppearance(DARK);
         setLocationRelativeTo(null);
+        setVisible(true);
         
         this.taskOcupado = taskOcupado;
         this.taskOcupado.addObserver(this);
@@ -62,7 +62,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     private void initComponents() {
 
         assignTaskButton = new javax.swing.JButton();
-        memberComboBox = new javax.swing.JComboBox<>();
+        personComboBox = new javax.swing.JComboBox<>();
         notificationsScrollPane = new javax.swing.JScrollPane();
         notificationsTable = new javax.swing.JTable();
         taskComboBox = new javax.swing.JComboBox<>();
@@ -87,10 +87,10 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
             }
         });
 
-        memberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select member" }));
-        memberComboBox.addActionListener(new java.awt.event.ActionListener() {
+        personComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select person" }));
+        personComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                memberComboBoxActionPerformed(evt);
+                personComboBoxActionPerformed(evt);
             }
         });
 
@@ -99,7 +99,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
 
             },
             new String [] {
-                "Time", "Task", "Member"
+                "Time", "Task", "Person"
             }
         ) {
             Class[] types = new Class [] {
@@ -217,7 +217,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
                         .addComponent(assignTaskButton)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(memberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(personComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(notificationsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,7 +231,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
                     .addComponent(taskComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(assignTaskButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(memberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(personComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(notificationsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(7, Short.MAX_VALUE))
@@ -265,16 +265,16 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_uglyRadioButtonMenuItemActionPerformed
 
     private void assignTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignTaskButtonActionPerformed
-        taskOcupadoController.assignTask(taskComboBox.getSelectedItem().toString(), memberComboBox.getSelectedItem().toString());
+        taskOcupadoController.assignTask(taskComboBox.getSelectedItem().toString(), personComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_assignTaskButtonActionPerformed
 
     private void taskComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskComboBoxActionPerformed
-        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0));
+        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || personComboBox.getSelectedIndex() == 0));
     }//GEN-LAST:event_taskComboBoxActionPerformed
 
-    private void memberComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberComboBoxActionPerformed
-        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 ));
-    }//GEN-LAST:event_memberComboBoxActionPerformed
+    private void personComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personComboBoxActionPerformed
+        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || personComboBox.getSelectedIndex() == 0 ));
+    }//GEN-LAST:event_personComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,7 +329,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuItem copyrightMenuItem;
     private javax.swing.JRadioButtonMenuItem darkRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem lightRadioButtonMenuItem;
-    private javax.swing.JComboBox<String> memberComboBox;
+    private javax.swing.JComboBox<String> personComboBox;
     private javax.swing.JScrollPane notificationsScrollPane;
     private javax.swing.JTable notificationsTable;
     private javax.swing.JMenuItem quitMenuItem;
@@ -342,15 +342,15 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
     public void update(Object event) {
         var timestamp = (String) ((Map) event).get("Time");
         var taskDescription = (String) ((Map) event).get("Task");
-        var memberName = (String) ((Map) event).get("Name");
+        var personName = (String) ((Map) event).get("Name");
 
-        var notification = "(" + timestamp + ")  Task: [" + taskDescription + "]  →  Member: [" + memberName + "]\n";
+        var notification = "(" + timestamp + ")  Task: [" + taskDescription + "]  →  Person: [" + personName + "]\n";
 
         DefaultTableModel m = (DefaultTableModel) notificationsTable.getModel();
         m.addRow(new Object[]{
             timestamp,
             taskDescription,
-            memberName
+            personName
         });
         System.out.println("[debugging] view update: \n" + event);
     }
@@ -361,9 +361,9 @@ public class TASkOcupadoView extends javax.swing.JFrame implements Observer {
         taskComboBox.setSelectedIndex(0);
     }
     
-    protected void loadMembersComboBox(String[] members) {
-        //memberComboBox = new JComboBox<String>();
-        memberComboBox.setModel(new DefaultComboBoxModel(members));
-        memberComboBox.setSelectedIndex(0);
+    protected void loadPeopleComboBox(String[] people) {
+        //personComboBox = new JComboBox<String>();
+        personComboBox.setModel(new DefaultComboBoxModel(people));
+        personComboBox.setSelectedIndex(0);
     }
 }

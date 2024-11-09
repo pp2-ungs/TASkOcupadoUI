@@ -7,9 +7,7 @@ import core.Task;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class TASkOcupadoController implements Observer {
 
@@ -36,7 +34,7 @@ public class TASkOcupadoController implements Observer {
         taskOcupado.getPeople().forEach(person -> people.put(person.toString(), person));
         
         loadTasksComboBox();
-        loadMembersComboBox();
+        loadPeopleComboBox();
     }
 
     public void assignTask(String task, String person) {
@@ -60,7 +58,7 @@ public class TASkOcupadoController implements Observer {
         taskOcupadoView.loadTasksComboBox(tasksArray);
     }
 
-    private void loadMembersComboBox() {
+    private void loadPeopleComboBox() {
         var peopleSet = people.keySet();
 
         var peopleList = new ArrayList<String>(peopleSet);
@@ -68,7 +66,7 @@ public class TASkOcupadoController implements Observer {
         peopleList.addFirst("Select person");
 
         var peopleArray = peopleList.toArray(new String[0]);
-        taskOcupadoView.loadMembersComboBox(peopleArray); 
+        taskOcupadoView.loadPeopleComboBox(peopleArray); 
     }
     
 }
