@@ -35,15 +35,15 @@ public class TASkOcupadoController implements Observer {
         notifiers = taskOcupado.getNotifiers();
         
         taskOcupado.getTasks().forEach(task -> tasks.put(task.toString(), task));
-        taskOcupado.getPeople().forEach(member -> people.put(member.toString(), member));
+        taskOcupado.getPeople().forEach(person -> people.put(person.toString(), person));
 
         loadTasksComboBox();
-        loadMembersComboBox();
+        loadPeopleComboBox();
         loadNotifiersComboBox();
     }
 
-    public void assignTask(String task, String member) {
-        taskOcupado.assignTask(tasks.get(task), people.get(member));
+    public void assignTask(String task, String person) {
+        taskOcupado.assignTask(tasks.get(task), people.get(person));
     }
 
     @Override
@@ -63,15 +63,15 @@ public class TASkOcupadoController implements Observer {
         taskOcupadoView.loadTasksComboBox(tasksArray);
     }
 
-    private void loadMembersComboBox() {
-        Set<String> membersSet = people.keySet();
+    private void loadPeopleComboBox() {
+        Set<String> peopleSet = people.keySet();
 
-        List<String> membersList = new ArrayList<>(membersSet);
-        membersList.sort(Comparator.comparing(String::toString));
-        membersList.addFirst("Select member");
+        List<String> peopleList = new ArrayList<>(peopleSet);
+        peopleList.sort(Comparator.comparing(String::toString));
+        peopleList.addFirst("Select person");
 
-        String[] membersArray = membersList.toArray(new String[0]);
-        taskOcupadoView.loadMembersComboBox(membersArray);
+        String[] peopleArray = peopleList.toArray(new String[0]);
+        taskOcupadoView.loadPeopleComboBox(peopleArray);
     }
 
     private void loadNotifiersComboBox() {

@@ -7,7 +7,7 @@ public class TASkOcupadoApp {
 
     /**
      * @param args[0] = config.properties path
-     * @param args[0] = logger.txt path
+     * @param args[1] = logger.txt path
      */
     public static void main(String[] args) {
 

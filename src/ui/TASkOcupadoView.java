@@ -63,7 +63,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
 
         assignTaskButton = new javax.swing.JButton();
         notificationMethodComboBox = new javax.swing.JComboBox<>();
-        memberComboBox = new javax.swing.JComboBox<>();
+        personComboBox = new javax.swing.JComboBox<>();
         notificationsScrollPane = new javax.swing.JScrollPane();
         notificationsTable = new javax.swing.JTable();
         taskComboBox = new javax.swing.JComboBox<>();
@@ -100,17 +100,17 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
             }
         });
 
-        memberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Select member"}));
-        memberComboBox.addActionListener(new java.awt.event.ActionListener() {
+        personComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Select person"}));
+        personComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                memberComboBoxActionPerformed(evt);
+                personComboBoxActionPerformed(evt);
             }
         });
 
         notificationsTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Time", "Task", "Member"
+                    "Time", "Task", "Person"
                 }
         ) {
             Class[] types = new Class[]{
@@ -290,7 +290,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(notificationsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(memberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(personComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -306,7 +306,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(removeNotificationMethodButton)
-                                        .addComponent(memberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(personComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(notificationMethodScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
@@ -342,7 +342,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
     }//GEN-LAST:event_uglyRadioButtonMenuItemActionPerformed
 
     private void assignTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignTaskButtonActionPerformed
-        taskOcupadoController.assignTask(taskComboBox.getSelectedItem().toString(), memberComboBox.getSelectedItem().toString());
+        taskOcupadoController.assignTask(taskComboBox.getSelectedItem().toString(), personComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_assignTaskButtonActionPerformed
 
     private void addNotificationMethodButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNotificationMethodButtonActionPerformed
@@ -351,7 +351,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
             notificationMethodComboBox.getSelectedItem()
         });
         notifiersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 || notifiersTable.getRowCount() <= 0));
+        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || personComboBox.getSelectedIndex() == 0 || notifiersTable.getRowCount() <= 0));
         taskOcupadoController.activeNotifier(notificationMethodComboBox.getSelectedItem().toString());
     }//GEN-LAST:event_addNotificationMethodButtonActionPerformed
 
@@ -388,12 +388,12 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
     }//GEN-LAST:event_notificationMethodTableFocusLost
 
     private void taskComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskComboBoxActionPerformed
-        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 || notifiersTable.getRowCount() <= 0));
+        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || personComboBox.getSelectedIndex() == 0 || notifiersTable.getRowCount() <= 0));
     }//GEN-LAST:event_taskComboBoxActionPerformed
 
-    private void memberComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberComboBoxActionPerformed
-        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || memberComboBox.getSelectedIndex() == 0 || notifiersTable.getRowCount() <= 0));
-    }//GEN-LAST:event_memberComboBoxActionPerformed
+    private void personComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personComboBoxActionPerformed
+        assignTaskButton.setEnabled(!(taskComboBox.getSelectedIndex() == 0 || personComboBox.getSelectedIndex() == 0 || notifiersTable.getRowCount() <= 0));
+    }//GEN-LAST:event_personComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -449,7 +449,7 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
     private javax.swing.JMenuItem copyrightMenuItem;
     private javax.swing.JRadioButtonMenuItem darkRadioButtonMenuItem;
     private javax.swing.JRadioButtonMenuItem lightRadioButtonMenuItem;
-    private javax.swing.JComboBox<String> memberComboBox;
+    private javax.swing.JComboBox<String> personComboBox;
     private javax.swing.JComboBox<String> notificationMethodComboBox;
     private javax.swing.JScrollPane notificationMethodScrollPane;
     private javax.swing.JTable notifiersTable;
@@ -467,15 +467,13 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
 
         var timestamp = (String) ((Map) event).get("Time");
         var taskDescription = (String) ((Map) event).get("Task");
-        var memberName = (String) ((Map) event).get("Name");
-
-        var notification = "(" + timestamp + ")  Task: [" + taskDescription + "]  →  Member: [" + memberName + "]\n";
+        var personName = (String) ((Map) event).get("Name");
 
         DefaultTableModel m = (DefaultTableModel) notificationsTable.getModel();
         m.addRow(new Object[]{
             timestamp,
             taskDescription,
-            memberName
+            personName
         });
         System.out.println("[debugging] view update: \n" + event);
     }
@@ -486,10 +484,10 @@ public class TASkOcupadoView extends javax.swing.JFrame implements observer.Obse
         taskComboBox.setSelectedIndex(0);
     }
 
-    protected void loadMembersComboBox(String[] members) {
-        //memberComboBox = new JComboBox<String>();
-        memberComboBox.setModel(new DefaultComboBoxModel(members));
-        memberComboBox.setSelectedIndex(0);
+    protected void loadPeopleComboBox(String[] people) {
+        //personComboBox = new JComboBox<String>();
+        personComboBox.setModel(new DefaultComboBoxModel(people));
+        personComboBox.setSelectedIndex(0);
     }
 
     protected void loadNotifiersComboBox(String[] notificationMethods) {
