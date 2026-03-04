@@ -2,7 +2,7 @@
 
 > **UI module** of the TASkOcupado task-management system — a Java Swing desktop application that lets users assign tasks to people and watch real-time assignment notifications.
 
-© 2024 Ebertz, López, Rondelli — College project, PP2 @ UNGS
+© 2024 [Ebertz](https://github.com/xebertz), [López](https://github.com/Gonza-JL), [Rondelli](https://github.com/rondelli)
 
 ---
 
